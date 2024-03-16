@@ -5,3 +5,4 @@ dj-database-url
 django-environ==0.9.0
 whitenoise
 gunicorn
+django-cors-headers
