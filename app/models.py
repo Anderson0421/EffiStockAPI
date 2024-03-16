@@ -2,16 +2,7 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.contrib.auth.models import Group, Permission
 
-class Producto(models.Model):
-    nombre = models.CharField(max_length=150,blank=False,null=False)
-    marca = models.CharField(max_length=150,blank=False,null=False)
-    precio = models.DecimalField(max_digits=10, decimal_places=2,blank=False,null=False)
-    fecha_ingreso = models.DateField(auto_now_add=True) 
-    peso = models.DecimalField(max_digits=10, decimal_places=2,blank=False,null=False)
-    
-    def __str__(self):
-        return self.nombre
-    
+
 from django.contrib.auth.models import AbstractUser
 
 class CustomUser(AbstractUser):
@@ -32,3 +23,15 @@ class CustomUser(AbstractUser):
         help_text=('Specific permissions for this user.'),
         verbose_name=('user permissions')
     )
+    
+class Producto(models.Model):
+    nombre = models.CharField(max_length=150,blank=False,null=False)
+    marca = models.CharField(max_length=150,blank=False,null=False)
+    precio = models.DecimalField(max_digits=10, decimal_places=2,blank=False,null=False)
+    fecha_ingreso = models.DateField(auto_now_add=True) 
+    peso = models.DecimalField(max_digits=10, decimal_places=2,blank=False,null=False)
+    usuario = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return self.nombre
+    

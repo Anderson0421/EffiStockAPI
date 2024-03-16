@@ -5,7 +5,7 @@ from .models import CustomUser
 class ProductoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Producto
-        fields = ('id','nombre','marca','precio','fecha_ingreso')
+        fields = ('id','nombre','marca','precio','fecha_ingreso','usuario','peso')
         read_only_fields = ('fecha_ingreso',)
         
 
